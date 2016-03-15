@@ -23,7 +23,7 @@
   "license": "MIT",
   "dependencies": {
     "cache-manager": "^1.2.2",
-    "sol-redis-pool": "^0.2.1"
+    "sol-redis-pool": "git+https://github.com/super-deluxe/sol-redis-pool.git"
   },
   "devDependencies": {
     "codacy-coverage": "^1.1.3",
