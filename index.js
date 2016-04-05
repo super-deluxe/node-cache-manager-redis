@@ -33,7 +33,7 @@ function redisStore(args) {
     redisOptions.host = redisUrl.hostname;
     redisOptions.port = redisUrl.port;
     if (redisUrl.auth) {
-      redisOptions.auth_pass = redisUrl.auth;
+      redisOptions.auth_pass = redisUrl.auth.replace(/.*?:/, '');;
     }
 
     poolSettings = redisOptions;
