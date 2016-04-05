@@ -1,6 +1,7 @@
 'use strict';
 
 var RedisPool = require('sol-redis-pool');
+var url = require('url');
 var EventEmitter = require('events').EventEmitter;
 
 /**
@@ -25,6 +26,16 @@ function redisStore(args) {
 
   redisOptions.host = args.host || '127.0.0.1';
   redisOptions.port = args.port || 6379;
+
+  if (redisOptions.url) {
+    var redisUrl = url.parse(redisOptions.url, true);
+
+    redisOptions.host = redisUrl.hostname;
+    redisOptions.port = redisUrl.port;
+    if (redisUrl.auth) {
+      redisOptions.auth_pass = redisUrl.auth;
+    }
+  }
 
   var pool = new RedisPool(redisOptions, poolSettings);
 

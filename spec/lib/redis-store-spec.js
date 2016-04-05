@@ -7,9 +7,7 @@ var redisCache;
 beforeAll(function() {
   redisCache = require('cache-manager').caching({
     store: redisStore,
-    host: config.redis.host,
-    port: config.redis.port,
-    db: config.redis.db,
+    url: config.redis.url,
     ttl: config.redis.ttl
   });
 });
@@ -50,7 +48,7 @@ describe('set', function() {
   });
 
   it('should not store an invalid value', function(done) {
-    redisCache.set('foo1', undefined, function(){
+    redisCache.set('foo1', null, function(){
       redisCache.get('foo1', function(err, value) {
         expect(err).toBe(null);
         expect(value).toBe(null);
