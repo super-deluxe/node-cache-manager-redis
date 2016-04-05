@@ -35,6 +35,8 @@ function redisStore(args) {
     if (redisUrl.auth) {
       redisOptions.auth_pass = redisUrl.auth;
     }
+
+    poolSettings = redisOptions;
   }
 
   var pool = new RedisPool(redisOptions, poolSettings);
